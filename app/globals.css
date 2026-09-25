@@ -3,25 +3,50 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #171717; /* neutral-900 — primary text, border emphasis, primary buttons */
+  --paper: #fafafa; /* neutral-50 — page background */
+  --muted: #737373; /* neutral-500 — secondary text and metadata */
+
+  /*
+    SIGNAL COLORS ARE SEMANTIC, NEVER DECORATIVE.
+    blue = real data from API, amber = derived estimate with declared logic,
+    gray = design convention. Do not use these for decoration, branding,
+    or generic accents.
+  */
+  --signal-real: #2563eb; /* blue-600 */
+  --signal-derived: #d97706; /* amber-600 */
+  --signal-convention: #a3a3a3; /* neutral-400 — deliberately lighter than --muted */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --ink: #ededed;
+    --paper: #0a0a0a;
+    --muted: #a3a3a3;
+    --signal-real: #60a5fa; /* blue-400 — holds contrast on dark paper */
+    --signal-derived: #fbbf24; /* amber-400 */
+    --signal-convention: #525252; /* neutral-600 — stays distinct from dark --muted */
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  body {
+    color: var(--ink);
+    background: var(--paper);
+    /* Inter is used when installed locally; otherwise system fallbacks. Weights in use: 400, 500 only. */
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* Tabular numerals — required for all percentages, counts, and costs. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
   }
 }

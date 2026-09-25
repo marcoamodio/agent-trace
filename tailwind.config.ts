@@ -9,8 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        ink: "var(--ink)",
+        paper: "var(--paper)",
+        muted: "var(--muted)",
+        "signal-real": "var(--signal-real)",
+        "signal-derived": "var(--signal-derived)",
+        "signal-convention": "var(--signal-convention)",
       },
     },
   },
