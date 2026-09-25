@@ -11,7 +11,9 @@ const config: Config = {
       colors: {
         ink: "var(--ink)",
         paper: "var(--paper)",
+        surface: "var(--surface)",
         muted: "var(--muted)",
+        tertiary: "var(--tertiary)",
         "signal-real": "var(--signal-real)",
         "signal-derived": "var(--signal-derived)",
         "signal-convention": "var(--signal-convention)",

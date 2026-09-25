@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Chip from "./Chip";
-import Dot from "./Dot";
 import useReducedMotion from "./useReducedMotion";
 import type { ScenarioStep } from "@/lib/scenario";
 
@@ -69,25 +67,28 @@ export default function Activity({
   }, [visibleCount, reduced, steps.length]);
 
   return (
-    <ol ref={listRef} className="flex flex-col gap-2">
+    <ol ref={listRef} className="relative flex flex-col gap-4">
+      {/* vertical connector — the timeline spine */}
+      <span
+        aria-hidden="true"
+        className="absolute bottom-3 left-[5.5px] top-3 w-px bg-ink/10"
+      />
       {steps.slice(0, visibleCount).map((step, i) => {
         const showPulseDot = !workDone && i === visibleCount - 1;
         return (
-          <li key={i}>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-[10px] border border-ink/10 px-3 py-2">
-              <span className="font-mono text-xs text-ink">{step.tool}</span>
-              <span className="font-mono text-xs text-muted">{step.args}</span>
-              <span className="ml-auto">
-                <Chip>
-                  {showPulseDot ? (
-                    <span data-pulse-dot className="inline-flex">
-                      <Dot level="real" />
-                    </span>
-                  ) : null}
-                  {step.result}
-                </Chip>
-              </span>
-            </div>
+          <li key={i} className="relative flex items-center gap-3">
+            <span
+              {...(showPulseDot ? { "data-pulse-dot": true } : {})}
+              aria-hidden="true"
+              className="h-[11px] w-[11px] shrink-0 rounded-full border-2 border-signal-real bg-surface"
+            />
+            <span className="font-mono text-[13px] text-ink">{step.tool}</span>
+            <span className="font-mono text-[13px] text-tertiary">
+              {step.args}
+            </span>
+            <span className="ml-auto shrink-0 text-xs text-tertiary">
+              {step.result}
+            </span>
           </li>
         );
       })}

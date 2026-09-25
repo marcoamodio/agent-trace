@@ -5,7 +5,9 @@
 :root {
   --ink: #171717; /* neutral-900 — primary text, border emphasis, primary buttons */
   --paper: #fafafa; /* neutral-50 — page background */
+  --surface: #ffffff; /* raised surface — question card and trace panel only */
   --muted: #737373; /* neutral-500 — secondary text and metadata */
+  --tertiary: #a3a3a3; /* neutral-400 — quietest text: labels, args, metadata */
 
   /*
     SIGNAL COLORS ARE SEMANTIC, NEVER DECORATIVE.
@@ -22,7 +24,9 @@
   :root {
     --ink: #ededed;
     --paper: #0a0a0a;
+    --surface: #161616;
     --muted: #a3a3a3;
+    --tertiary: #737373;
     --signal-real: #60a5fa; /* blue-400 — holds contrast on dark paper */
     --signal-derived: #fbbf24; /* amber-400 */
     --signal-convention: #525252; /* neutral-600 — stays distinct from dark --muted */
@@ -48,5 +52,20 @@
   /* Tabular numerals — required for all percentages, counts, and costs. */
   .tnum {
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Chapter markers: 11px uppercase, letter-spacing 0.08em, tertiary color. */
+  .micro-label {
+    font-size: 11px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    color: var(--tertiary);
+  }
+
+  /* 0.5px hairline at ~8% ink — replaces 1px fences between rows/sections. */
+  .hairline-b {
+    border-bottom: 0.5px solid color-mix(in srgb, var(--ink) 8%, transparent);
   }
 }

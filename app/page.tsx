@@ -63,18 +63,20 @@ export default function Home() {
   const showTrace = phase === "trace" || phase === "done";
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-6 px-4 py-10 sm:px-6">
+    <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col gap-8 px-4 py-16 sm:px-6">
       <header className="flex flex-col gap-2">
-        <div className="flex items-center gap-2">
-          <h1 className="text-base font-medium text-ink">Agent Trace</h1>
+        <div className="flex items-center gap-3">
+          <h1 className="text-[28px] font-medium leading-tight text-ink">
+            Agent Trace
+          </h1>
           <Chip level="convention">prototype 0.1</Chip>
         </div>
-        <p className="text-sm text-muted">See what happened after you asked.</p>
+        <p className="text-base text-muted">See what happened after you asked.</p>
       </header>
 
-      <section className="flex flex-col gap-3 rounded-xl border border-ink/10 p-4">
-        <p className="text-base text-ink">{scenario.question}</p>
-        <div className="flex items-center gap-3">
+      <section className="flex flex-col gap-4 rounded-[14px] bg-surface p-6">
+        <p className="text-xl font-medium text-ink">{scenario.question}</p>
+        <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={start}
@@ -87,7 +89,7 @@ export default function Home() {
             <button
               type="button"
               onClick={restart}
-              className="rounded-[10px] border border-ink/15 px-4 py-2 text-sm text-muted transition-colors hover:text-ink"
+              className="text-sm text-muted transition-colors hover:text-ink"
             >
               Restart
             </button>
@@ -96,12 +98,18 @@ export default function Home() {
       </section>
 
       {running ? (
-        <Activity steps={scenario.steps} visibleCount={visibleSteps} />
+        <div className="flex flex-col gap-3">
+          <p className="micro-label">The work · visible as it happens</p>
+          <Activity steps={scenario.steps} visibleCount={visibleSteps} />
+        </div>
       ) : null}
 
       {showAnswer ? (
-        <div className="flex flex-col gap-2">
-          <Answer text={scenario.answer} />
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-3">
+            <p className="micro-label">The answer</p>
+            <Answer text={scenario.answer} />
+          </div>
           {showTrace ? <Trace data={scenario} /> : null}
         </div>
       ) : null}

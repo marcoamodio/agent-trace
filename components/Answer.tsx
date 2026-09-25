@@ -21,8 +21,8 @@ export default function Answer({ text }: { text: string }) {
   }, [reduced]);
 
   return (
-    <div ref={ref} className="rounded-[10px] border border-ink/10 p-4">
-      <p className="text-base leading-normal text-ink">{text}</p>
+    <div ref={ref}>
+      <p className="max-w-[58ch] text-[19px] leading-[1.55] text-ink">{text}</p>
     </div>
   );
 }

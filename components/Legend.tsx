@@ -12,7 +12,7 @@ export default function Legend() {
       {items.map((item) => (
         <li key={item.level} className="flex items-center gap-1.5">
           <Dot level={item.level} />
-          <span className="text-xs text-muted">{item.label}</span>
+          <span className="text-[11px] text-tertiary">{item.label}</span>
         </li>
       ))}
     </ul>
